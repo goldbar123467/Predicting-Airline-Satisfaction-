@@ -1,0 +1,173 @@
+{
+  "campaign": "third_pass_long_cloud",
+  "version": 1,
+  "runs": [
+    {
+      "id": "v3_cloud_realmlp_raw_aux_e60",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 60,
+      "timeout_seconds": 4500,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true,
+      "execution_backend": "kaggle"
+    }
+  ],
+  "execution_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "control_id": "v3_cloud_realmlp_raw_aux_e4",
+  "candidate_id": "v3_cloud_realmlp_raw_aux_e60",
+  "hard_timeout_seconds": 4500,
+  "selection_exclusions": [
+    "v3_cloud_realmlp_raw_aux_e4"
+  ],
+  "comparison_controls": {
+    "v3_cloud_realmlp_raw_aux_e60": "v3_cloud_realmlp_raw_aux_e4"
+  },
+  "per_run_timeout_seconds": {
+    "v3_cloud_realmlp_raw_aux_e60": 4500
+  },
+  "development_rows": 629671,
+  "test_rows": 299844,
+  "raw_features": [
+    "Age",
+    "Flight Distance",
+    "Inflight wifi service",
+    "Departure/Arrival time convenient",
+    "Ease of Online booking",
+    "Gate location",
+    "Food and drink",
+    "Online boarding",
+    "Seat comfort",
+    "Inflight entertainment",
+    "On-board service",
+    "Leg room service",
+    "Baggage handling",
+    "Checkin service",
+    "Cleanliness",
+    "Departure Delay in Minutes",
+    "Arrival Delay in Minutes",
+    "Gender",
+    "Customer Type",
+    "Type of Travel",
+    "Class"
+  ],
+  "aux_columns": [
+    "orig_aux_00",
+    "orig_aux_01",
+    "orig_aux_02",
+    "orig_aux_03",
+    "orig_aux_04",
+    "orig_aux_05",
+    "orig_aux_06",
+    "orig_aux_07",
+    "orig_aux_08",
+    "orig_aux_09",
+    "orig_aux_10",
+    "orig_aux_11",
+    "orig_aux_12"
+  ],
+  "source_split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "official_train_csv_sha256": "2313b65c74e6994f01c2628aae82d2f97aa6f74a81950172ff83864837c98b36",
+  "full_aux_cache_sha256": "0d3c98df25579e0ceb17cbc65ab43d20a1d0a4ab00a479f09019d76732df9c03",
+  "source_bank_manifest_sha256": "4c0adfc0b94c5811d801cf058459159db3835d6bb8a0aa3a2029facc9c4d971c",
+  "seed": 20261005,
+  "inner_stop_fraction": 0.1,
+  "inner_seed_rule": "seed+outer_fold",
+  "inference_device": "cpu",
+  "training_device": "cuda:0",
+  "audit_labels_exported": 0,
+  "matched_gate": {
+    "pooled_gain_min": 0,
+    "mean_fold_gain_min": 0,
+    "worst_fold_gain_min": -2e-05
+  },
+  "blend_gate": {
+    "alphas": [
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "pooled_gain_min": 1e-05,
+    "mean_fold_gain_min": 1e-05,
+    "worst_fold_gain_min": -2e-05
+  },
+  "control_blend_eligible": false,
+  "all_heldout_native_replay_required": true,
+  "refit": "Explicit phase only after global freeze; fixed median rounds, same cloud image and full official labels then",
+  "protocol_id": "realmlp_long_schedule_v1",
+  "production_timeout_seconds": 750,
+  "registered_utc": "2026-10-02T15:08:00Z",
+  "cv_absolute_stop_utc": "2026-10-02T16:30:00Z",
+  "latest_production_start_utc": "2026-10-02T16:30:00Z",
+  "production_absolute_stop_utc": "2026-10-02T16:42:30Z",
+  "deadline_utc": "2026-10-02T17:00:00Z",
+  "native_import_reserve_seconds": 300,
+  "final_raw_verification_reserve_seconds": 660,
+  "release_gate": {
+    "production_estimate_fixed_overhead_seconds": 90,
+    "production_estimate_seconds_per_epoch": 25,
+    "max_production_seconds": 750,
+    "latest_production_start_utc": "2026-10-02T16:30:00Z",
+    "no_round_truncation": true
+  },
+  "control_reuse": {
+    "id": "v3_cloud_realmlp_raw_aux_e4",
+    "run": {
+      "id": "v3_cloud_realmlp_raw_aux_e4",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 3600,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true,
+      "execution_backend": "kaggle"
+    },
+    "result_sha256": "fcb2a98b5df022b9ba3c056bb18c59578c5839c68a90df7ba90cb52109385cd6",
+    "receipt_sha256": "f95da16ac68ade87289687c9ff9b9832451e9009c56b7c34c792319b43843245",
+    "oof_sha256": "8a400c8ea53f03d3fd2f47537f5d831863e75ec70adfb5711d0f55fffe2b1a7e",
+    "test_sha256": "e81587b82028538c7612518fa5fc2d1c515e9492f6201c87193db1cc46088630",
+    "execution_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+    "prior_bundle_sha256": "a5eee31904c7700357a32f174130195f044b47d545dd77cd97579269d741bd96",
+    "source_model_files": {
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/categorical_transform.py": "dc6e354e22f86eca08315ded64938c9fc234d3bf005149925feb3aac6fdbc2b2",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/common.py": "a7eb45a2c5309782a86eb9c8e31e7ecf17e3e062200ab888b8eb9e7c62e9a5b5",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/original_aux.py": "ef76c06fc172a6d55639bb914b14cb06e999d8e5d6a8274293a36ad51d86a47a",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/realmlp.py": "8da0d62f1555c91ffe91befe7855f553f58fe6781db0e7249a7e7041130e03d8",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/realmlp_categorical.py": "70c8b78f77c8f53df7f94e7fc4c92d3e47592973dd942fae20ed3beb2bbe4184",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/reviewed_bootstrap.py": "5886a5301b1b5d0dddcb10499844d13bc38db9b6e16048b10d9deed132865c68",
+      "artifacts/runs/v3_cloud_realmlp_raw_aux_e4/source/cloud_feature_compat.py": "2be5d2e0ebcfc7699f425a8d3b672500f38531eb4277e12bb3ade3bdaf09217f"
+    }
+  },
+  "partial_outputs_eligible": false
+}

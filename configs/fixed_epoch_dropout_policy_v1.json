@@ -1,0 +1,75 @@
+{
+  "id": "fixed_epoch_dropout_v1",
+  "created_utc": "2026-10-04T18:09:40.176138+00:00",
+  "user_authorization": "2026-10-04: Please launch the training, referring to the prepared dropout-only continuation proposal. Continue private free Kaggle execution and keep current blend.",
+  "proposal_path": "FIXED_EPOCH_CLOUD_NEXT_EXPERIMENT.md",
+  "proposal_sha256": "4a14587a98969a1e45394afc3123cebdbdb259b093d431e8fe57335801af56a0",
+  "parent_registry_path": "artifacts/fixed_epoch_cloud_v1/registry.json",
+  "parent_registry_sha256": "2aa065324331a5eed7ad464c82bcd6d967d91d38c5a453f9a7a71ee9fd03266d",
+  "prepared_parent_payload": "cloud/fixed_epoch_v1/bundle/payload",
+  "parent_bundle_manifest_sha256": "d7a5cce4652f33f3a81512d1b18681942ffc7065b931b3d014fc475e19ab494b",
+  "hard_timeout_seconds": 7200,
+  "fit_budget_seconds": 6300,
+  "remote_smoke_timeout_seconds": 330,
+  "maximum_gpu_jobs": 1,
+  "paid_compute": false,
+  "private_required": true,
+  "training_location": "Kaggle only",
+  "cloud_namespace": "cloud/fixed_epoch_dropout_v1",
+  "dataset_id": "clarkkitchen/s6e10-dropout-bundle-20261004",
+  "kernel_id": "clarkkitchen/s6e10-dropout-20261004",
+  "expected_fit_count": 12,
+  "expected_outer_endpoint_count": 9,
+  "total_executed_epochs": 192,
+  "common_horizon_epochs": 16,
+  "intervention_after_completed_epoch": 4,
+  "treatment_dropout_base": 0.05,
+  "trajectory_policies": {
+    "A": "original p_drop schedule for all16epochs",
+    "C": "identical original schedule through4epochs; p_drop base heldat0.05 forepochs5through16, unrelatedscopemultiplierspreserved"
+  },
+  "logical_endpoints": {
+    "A": {
+      "trajectory": "A",
+      "epoch": 16
+    },
+    "B": {
+      "trajectory": "C",
+      "epoch": 4
+    },
+    "C": {
+      "trajectory": "C",
+      "epoch": 16
+    }
+  },
+  "prefix_contract": "Full model, learned/static preprocessing, optimizer, RNG, progress, sampler/data order, nondropout schedule signatures match at epoch4 before treatment may continue. Native graph is inference-only, not resumable state.",
+  "evaluation": {
+    "mixture_alpha": 0.1,
+    "min_pooled_gain": 1e-05,
+    "min_macro_gain": 1e-05,
+    "max_fold_regression": 2e-05,
+    "class_order": [
+      0,
+      1
+    ],
+    "fold_ids": [
+      0,
+      1,
+      2
+    ]
+  },
+  "unchanged": [
+    "incumbent64/16/20",
+    "recipe andseed20261005",
+    "three frozen developmentfolds",
+    "train-only preprocessing",
+    "original-only auxiliaryfeatures",
+    "architecture eightmembers512/256/128",
+    "learningrateandweightdecayschedules",
+    "legacydecayfactorbehavior",
+    "noearlystopping orbestrestore",
+    "noautomaticpromotionorsubmission"
+  ],
+  "cost_basis": "Previouscloud120epochrun45.10minutes, adapter34.54minutes.192epochs estimatedabout55minutesadapter plussetup/verification. Providerlimit remains120minutes; exactcompletionnotguaranteed.",
+  "new_environment_limit": "Within-jobpaired comparison on samepinned Kaggle image. Historicaldevelopmentreuse isexploratory; nodeterminismacrossplatforms orindependentconfirmationclaimed."
+}

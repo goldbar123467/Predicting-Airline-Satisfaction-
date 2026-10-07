@@ -1,0 +1,202 @@
+{
+  "id": "continuation_six_v1",
+  "schema_version": 1,
+  "created_utc": "2026-10-04T21:02:37.804502+00:00",
+  "authority_path": "state/continuation_six_v1/authorization.json",
+  "stages": [
+    {
+      "id": "fixed_epoch_continuation_01",
+      "index": 1,
+      "policy": {
+        "id": "linear_lr",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "linear_lr_end_epoch": 16
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": null
+    },
+    {
+      "id": "fixed_epoch_continuation_02",
+      "index": 2,
+      "policy": {
+        "id": "decay_correction",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "decay_factor_applications_after_epoch4": 1
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": "fixed_epoch_continuation_01"
+    },
+    {
+      "id": "fixed_epoch_continuation_03",
+      "index": 3,
+      "policy": {
+        "id": "ema",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "ema_half_life_epochs": 1.0
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": "fixed_epoch_continuation_02"
+    },
+    {
+      "id": "fixed_epoch_continuation_04",
+      "index": 4,
+      "policy": {
+        "id": "label_smoothing",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "label_smoothing_after_epoch4": 0.05
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": "fixed_epoch_continuation_03"
+    },
+    {
+      "id": "fixed_epoch_continuation_05",
+      "index": 5,
+      "policy": {
+        "id": "freeze_embeddings",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "frozen_roles": [
+          "numeric_embedding",
+          "categorical_embedding",
+          "learned_preprocessing"
+        ]
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": "fixed_epoch_continuation_04"
+    },
+    {
+      "id": "fixed_epoch_continuation_06",
+      "index": 6,
+      "policy": {
+        "id": "head_only",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05,
+        "trainable_roles_after_epoch4": [
+          "final_affine"
+        ]
+      },
+      "control": {
+        "id": "control",
+        "after_completed_epoch": 4,
+        "horizon": 16,
+        "dropout_after_epoch4": 0.05
+      },
+      "required_previous_disposition": "fixed_epoch_continuation_05"
+    }
+  ],
+  "budget": {
+    "maximum_gpu_jobs": 1,
+    "experiment_timeout_seconds": 7200,
+    "fit_budget_seconds": 6300,
+    "remote_smoke_timeout_seconds": 330,
+    "release_timeout_seconds": 2400,
+    "maximum_experiments": 6,
+    "maximum_releases": 6,
+    "maximum_new_submissions": 6,
+    "max_gpu_seconds": 57600,
+    "wall_deadline_utc": "2026-10-05T21:02:37.804502+00:00"
+  },
+  "science": {
+    "common_horizon_epochs": 16,
+    "intervention_after_completed_epoch": 4,
+    "expected_fit_count": 12,
+    "expected_outer_endpoint_count": 9,
+    "expected_prefix_count": 6,
+    "expected_prefix_native_count": 3,
+    "expected_startup_processes": 14,
+    "total_executed_epochs": 192,
+    "logical_endpoints": {
+      "A": {
+        "trajectory": "A",
+        "epoch": 16
+      },
+      "B": {
+        "trajectory": "C",
+        "epoch": 4
+      },
+      "C": {
+        "trajectory": "C",
+        "epoch": 16
+      }
+    },
+    "control_reuse": false,
+    "inner_screening": false,
+    "audit_reassessment": false,
+    "assessment_count_per_stage": 1
+  },
+  "evaluation": {
+    "mixture_alpha": 0.1,
+    "min_pooled_gain": 1e-05,
+    "min_macro_gain": 1e-05,
+    "max_fold_regression": 2e-05,
+    "class_order": [
+      0,
+      1
+    ],
+    "fold_ids": [
+      0,
+      1,
+      2
+    ]
+  },
+  "incumbent_selection_path": "artifacts/third_pass/blend/frozen.json",
+  "incumbent_selection_sha256": "bc773bb7a65a3357ac82f1553ebd852e0fc2773cf6683650dce5fcf5166b3311",
+  "source_split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "parent_payload": "cloud/fixed_epoch_dropout_v1/bundle/payload",
+  "parent_manifest_sha256": "16d88ba105ce5e4f8c61cc22d45d3f7242ae83f8796a47fed2f22189cd4c9e5b",
+  "release_policy": {
+    "test_weight_search": false,
+    "fixed_candidate_alpha": 0.1,
+    "selection_before_full_refit": true,
+    "release_requires_gain_against_original_and_best_prior_qualifying_release": true,
+    "full_test_raw_native_verification": true,
+    "independent_blend_recomputation": true,
+    "daily_allowance_source": "live competition_get_submission_limits num_allowed_now",
+    "durable_submission_intent_and_reconciliation": true,
+    "public_leaderboard_adaptive_tuning": false
+  },
+  "compute_policy": {
+    "private_required": true,
+    "paid_compute": false,
+    "local_gpu_training": false,
+    "stop_other_applications": false,
+    "training_location": "Kaggle only",
+    "public_code_posting": false
+  },
+  "evidence_limit": "Six predeclared policies on historically reused development folds; exploratory, not independent confirmation. No globally optimal alpha claim. EMA and parameter-freezing semantics must be verified before each stage freezes."
+}

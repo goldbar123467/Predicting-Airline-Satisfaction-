@@ -1,0 +1,29 @@
+{
+  "protocol_id": "research_pass_v1",
+  "registered_utc": "2026-10-02T21:08:00Z",
+  "scope": "Diagnostic development-OOF reuse only; no fitting, audit scoring or release promotion",
+  "split_path": "data/splits.parquet",
+  "split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "anchor_path": "artifacts/third_pass/blend/frozen.json",
+  "anchor_sha256": "bc773bb7a65a3357ac82f1553ebd852e0fc2773cf6683650dce5fcf5166b3311",
+  "v2_path": "artifacts/second_pass/blend/frozen.json",
+  "v2_sha256": "d75c7eba29f8ed9cb3e9713e4f43b102a5d48dacdcfbba616f9c331a28bb0dc1",
+  "development_rows": 629671,
+  "fold_ids": [0, 1, 2],
+  "seed_groups": [
+    ["cat_route_teacher", "cat_route_teacher_seed2"],
+    ["realmlp_cat_te_teacher", "realmlp_cat_te_teacher_seed2"],
+    ["v2_realmlp_cat_raw_aux", "v2_realmlp_cat_raw_aux_seed20261021"]
+  ],
+  "blocks": ["v2", "v3_realmlp_cat_raw_aux_probability", "v3_xgb_route_te_teacher_profiles_aux_probability"],
+  "block_weight_grid": [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30],
+  "current_block_weights": [0.64, 0.16, 0.20],
+  "neural_weight_grid": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  "meta_selection_objective": "mean of AUC on the two included original folds",
+  "tie_tolerance": 1e-12,
+  "meta_tie_break": "closest Euclidean block weights to incumbent, then smaller NN weight, then smaller XGB weight",
+  "conditional_uncertainty_seed": 20261002,
+  "conditional_bootstrap_replicates": 200,
+  "maximum_numerical_threads": 2,
+  "evaluation_warning": "All results reuse selected OOF predictions. Meta resplitting is not end-to-end nested validation. Row-based uncertainty omits training randomness, adaptive selection and dependence among related observations."
+}

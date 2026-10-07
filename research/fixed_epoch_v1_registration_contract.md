@@ -1,0 +1,13 @@
+# Registration boundary
+
+`scripts/register_fixed_epoch_v1.py` is read-only unless invoked with `--freeze`. It imports no training library, never decodes competition parquet, and does no model fitting or metric calculation. Its frozen inputs include byte hashes of the raw training file and accepted incumbent OOF, solely for integrity verification.
+
+The required passing evidence is the supplied CUDA smoke directory plus the CPU adapter, runner and evaluator test receipts. The builder verifies each receipt's current implementation/test source hashes; CUDA evidence additionally binds all three completed generated-data trajectories, five endpoint graph/metadata pairs, curves, actual-transform exclusion, endpoint GPU reload and CPU/GPU parity. The successful smoke must use the production eight-member architecture and inference-only `torch.jit.optimized_execution(False)` workaround.
+
+Literal split, incumbent, original-only auxiliary bank and baseline release hashes are checked. The incumbent's fifteen result/contract/archive-source/environment/OOF byte identities are checked without reading prediction values. The exact existing recipe is compared against both its completed contract and original second-pass config. All consumed local scripts and every installed PyTabKit `.py` source are pinned; the current package versions and Python/platform versions are recorded.
+
+`--freeze` creates an exclusive permanent registration claim, copies and verifies source snapshots, rechecks source/input hashes, then exclusively writes registry and hash-bound wrapper. A partial failure remains visible and cannot be silently overwritten or resumed. The registry fixes twelve fits, nine outer endpoints, 629,671 development rows, the 4/4, 16/4 and 16/16 arms, the unchanged 10% mixtures and all three advancement comparators. Its fitting deadline is registration UTC plus 90 minutes and delivery deadline plus 120 minutes. This command never launches workers.
+
+Five generated-filesystem tests passed using `.venv/Scripts/python.exe -m unittest discover -s scripts -p test_register_fixed_epoch_v1.py -v`: current-source receipt binding, nonfinite/out-of-bound parity rejection, exact deadlines/scientific constants, exclusive snapshot/wrapper binding, and path/normalized-duplicate rejection. These tests do not replace the separate CUDA and pipeline receipts. No actual campaign registry or wrapper was created by this agent.
+
+Limits: metadata receipts establish the executions they record, not independent repeatability; package version capture does not pin every third-party binary. Byte hashing does not establish dataset quality. The campaign remains an adaptively reused development comparison and cannot authorize a release or submission.

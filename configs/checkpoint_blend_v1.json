@@ -1,0 +1,690 @@
+{
+  "id": "checkpoint_blend_v1",
+  "registered_utc": "2026-10-02T17:41:26.419068+00:00",
+  "registration_stage": "Post-training and after prior individual scores were known; before these new ensemble comparisons",
+  "authorization": "User requested mixing local and cloud saved epoch checkpoints, comparing locally and submitting best",
+  "anchor_selection_path": "artifacts/third_pass/blend/frozen.json",
+  "anchor_selection_sha256": "bc773bb7a65a3357ac82f1553ebd852e0fc2773cf6683650dce5fcf5166b3311",
+  "anchor_submission_sha256": "177eca4563e41b91c30c12d494284ea24d68951b6ada332edf49dc10646ccbc9",
+  "anchor_provenance_sha256": "77cec962b2c37ccd43954bb9cf4fbe10673f5970a6e082ced2520c38ef1f5d3a",
+  "anchor_submission_id": 56775181,
+  "split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "runs": {
+    "lgb_route": {
+      "result_sha256": "04c2797a7bdc88bc020dfe52dbe411f5edf16d9137648dc87ff3a2ba81346852",
+      "run": {
+        "id": "lgb_route",
+        "family": "lightgbm",
+        "route": true,
+        "seed": 20261002,
+        "max_rounds": 2600,
+        "patience": 150,
+        "timeout_seconds": 5400,
+        "params": {
+          "learning_rate": 0.035,
+          "num_leaves": 47,
+          "min_child_samples": 100,
+          "colsample_bytree": 0.85,
+          "subsample": 0.85,
+          "subsample_freq": 1,
+          "reg_lambda": 8.0,
+          "cat_smooth": 30.0,
+          "cat_l2": 10.0
+        }
+      }
+    },
+    "cat_route": {
+      "result_sha256": "639100687fb0593f763859c7655dbf86cf4725f3ab07ef51a4f93bbf5bee050f",
+      "run": {
+        "id": "cat_route",
+        "family": "catboost",
+        "route": true,
+        "seed": 20261002,
+        "max_rounds": 2600,
+        "patience": 160,
+        "timeout_seconds": 6000,
+        "params": {
+          "depth": 7,
+          "learning_rate": 0.05,
+          "l2_leaf_reg": 5.0,
+          "border_count": 128
+        }
+      }
+    },
+    "cat_route_teacher": {
+      "result_sha256": "1e6299961e2cf96f42b67f61bae00e8c89e6326558408a6a9236d3a027744966",
+      "run": {
+        "id": "cat_route_teacher",
+        "family": "catboost",
+        "route": true,
+        "teacher": true,
+        "seed": 20261003,
+        "max_rounds": 3000,
+        "patience": 160,
+        "timeout_seconds": 6000,
+        "params": {
+          "depth": 7,
+          "learning_rate": 0.05,
+          "l2_leaf_reg": 5.0,
+          "border_count": 128
+        }
+      }
+    },
+    "cat_route_teacher_d8": {
+      "result_sha256": "1a66b49add03b8098e6afcfb7e34cd56fed6b7a14056d0c968c5c9e437a35594",
+      "run": {
+        "id": "cat_route_teacher_d8",
+        "family": "catboost",
+        "route": true,
+        "teacher": true,
+        "seed": 20261003,
+        "max_rounds": 3000,
+        "patience": 160,
+        "timeout_seconds": 6000,
+        "params": {
+          "depth": 8,
+          "learning_rate": 0.05,
+          "l2_leaf_reg": 5.0,
+          "border_count": 128
+        }
+      }
+    },
+    "realmlp_te_teacher16": {
+      "result_sha256": "8e79d64ad336043ad975627914bfe1134d77daa44c20360a7411c3c4c3c6fd04",
+      "run": {
+        "id": "realmlp_te_teacher16",
+        "family": "realmlp",
+        "teacher": true,
+        "seed": 20261005,
+        "max_rounds": 16,
+        "timeout_seconds": 2400,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        }
+      }
+    },
+    "realmlp_cat_te_teacher": {
+      "result_sha256": "e184a20104edd7acac5b7e0d98109c1ce0e3297bbc502eaad4d5680e856f99ec",
+      "run": {
+        "id": "realmlp_cat_te_teacher",
+        "family": "realmlp_cat",
+        "teacher": true,
+        "seed": 20261005,
+        "max_rounds": 4,
+        "timeout_seconds": 1800,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        },
+        "categorical_twins": true
+      }
+    },
+    "cat_route_teacher_seed2": {
+      "result_sha256": "3619b4095fb2f9fb00e60b1f0c5eab5354fd49ffc54004bab3a0264ceaeee7c0",
+      "run": {
+        "id": "cat_route_teacher_seed2",
+        "family": "catboost",
+        "route": true,
+        "teacher": true,
+        "seed": 20261009,
+        "max_rounds": 3000,
+        "patience": 160,
+        "timeout_seconds": 6000,
+        "params": {
+          "depth": 7,
+          "learning_rate": 0.05,
+          "l2_leaf_reg": 5.0,
+          "border_count": 128
+        }
+      }
+    },
+    "cat_route_te_teacher": {
+      "result_sha256": "079194c7adac629869f2f6dda39e0a7a949c214428fb0b68067a037923d4c2d3",
+      "run": {
+        "id": "cat_route_te_teacher",
+        "family": "catboost",
+        "route": true,
+        "teacher": true,
+        "seed": 20261003,
+        "max_rounds": 3000,
+        "patience": 160,
+        "timeout_seconds": 6000,
+        "params": {
+          "depth": 7,
+          "learning_rate": 0.05,
+          "l2_leaf_reg": 5.0,
+          "border_count": 128
+        },
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        }
+      }
+    },
+    "realmlp_cat_te_teacher_seed2": {
+      "result_sha256": "10385c4b39aefa5ad1b21d91caf7b70f9c95bf0eeefd0f6e30afc8ba0de2e60c",
+      "run": {
+        "id": "realmlp_cat_te_teacher_seed2",
+        "family": "realmlp_cat",
+        "teacher": true,
+        "seed": 20261011,
+        "max_rounds": 4,
+        "timeout_seconds": 1800,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        },
+        "categorical_twins": true
+      }
+    },
+    "xgb_route_te_teacher_profiles": {
+      "result_sha256": "9ab3c9672848e9d8772c45bbac5c9a8400dc3a6390b7272c9abdef74b3a90668",
+      "run": {
+        "id": "xgb_route_te_teacher_profiles",
+        "family": "xgboost",
+        "teacher": true,
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        },
+        "seed": 20261004,
+        "max_rounds": 5000,
+        "patience": 220,
+        "timeout_seconds": 5400,
+        "params": {
+          "learning_rate": 0.03,
+          "max_depth": 8,
+          "min_child_weight": 5,
+          "subsample": 0.8,
+          "colsample_bytree": 0.5,
+          "reg_lambda": 1.0,
+          "max_bin": 256
+        },
+        "route_profiles": true
+      }
+    },
+    "v2_realmlp_cat_raw_aux": {
+      "result_sha256": "92624c94d88f5967f0277cfda7350337eebbcaf295f1d821031663d4b1d090f1",
+      "run": {
+        "id": "v2_realmlp_cat_raw_aux",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261005,
+        "max_rounds": 4,
+        "timeout_seconds": 1200,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true
+      }
+    },
+    "v2_realmlp_cat_raw_aux_seed20261021": {
+      "result_sha256": "15572276e213b93486b0fd97edf6cde887aa3c67bad7db7aba8a461b8e28f4d9",
+      "run": {
+        "id": "v2_realmlp_cat_raw_aux_seed20261021",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261021,
+        "max_rounds": 4,
+        "timeout_seconds": 1200,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true
+      }
+    },
+    "v2_xgb_route_te_teacher_profiles_aux": {
+      "result_sha256": "b97a2a8d652a9c18793ad7fc23f4b7cfab69488b2f38c93206fc121f04f22985",
+      "run": {
+        "id": "v2_xgb_route_te_teacher_profiles_aux",
+        "family": "xgboost",
+        "teacher": true,
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        },
+        "seed": 20261004,
+        "max_rounds": 5000,
+        "patience": 220,
+        "timeout_seconds": 600,
+        "params": {
+          "learning_rate": 0.03,
+          "max_depth": 8,
+          "min_child_weight": 5,
+          "subsample": 0.8,
+          "colsample_bytree": 0.5,
+          "reg_lambda": 1.0,
+          "max_bin": 256
+        },
+        "route_profiles": true,
+        "original_aux": true
+      }
+    },
+    "v3_realmlp_cat_raw_aux_probability": {
+      "result_sha256": "9342f8a966226ad971ca5a099736244df1f1ea6bdc867e53f3fa8bf77d1dcb2a",
+      "run": {
+        "id": "v3_realmlp_cat_raw_aux_probability",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261005,
+        "max_rounds": 4,
+        "timeout_seconds": 1200,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true,
+        "original_aux_probability": true
+      }
+    },
+    "v3_xgb_route_te_teacher_profiles_aux_probability": {
+      "result_sha256": "71301356d0b60345ac81944be73f61034ee8eb12527e8152687a0f78dfc29c80",
+      "run": {
+        "id": "v3_xgb_route_te_teacher_profiles_aux_probability",
+        "family": "xgboost",
+        "teacher": true,
+        "encoding": {
+          "keys": [
+            "Flight Distance",
+            "Age",
+            [
+              "Flight Distance",
+              "Age"
+            ],
+            [
+              "Flight Distance",
+              "Class"
+            ],
+            [
+              "Flight Distance",
+              "Type of Travel"
+            ],
+            [
+              "Age",
+              "Class",
+              "Type of Travel",
+              "Customer Type"
+            ]
+          ],
+          "smoothing": 20,
+          "n_splits": 5,
+          "seed": 20261001,
+          "counts": true
+        },
+        "seed": 20261004,
+        "max_rounds": 5000,
+        "patience": 220,
+        "timeout_seconds": 600,
+        "params": {
+          "learning_rate": 0.03,
+          "max_depth": 8,
+          "min_child_weight": 5,
+          "subsample": 0.8,
+          "colsample_bytree": 0.5,
+          "reg_lambda": 1.0,
+          "max_bin": 256
+        },
+        "route_profiles": true,
+        "original_aux": true,
+        "original_aux_probability": true
+      }
+    },
+    "v3_cloud_realmlp_raw_aux_e4": {
+      "result_sha256": "fcb2a98b5df022b9ba3c056bb18c59578c5839c68a90df7ba90cb52109385cd6",
+      "run": {
+        "id": "v3_cloud_realmlp_raw_aux_e4",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261005,
+        "max_rounds": 4,
+        "timeout_seconds": 3600,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true,
+        "execution_backend": "kaggle"
+      }
+    },
+    "v3_realmlp_cat_raw_aux_e60": {
+      "result_sha256": "b898e5ee1d333ba620cd9c0149cd5edd7c0c4d14fc5187043cd1157ce33e81c0",
+      "run": {
+        "id": "v3_realmlp_cat_raw_aux_e60",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261005,
+        "max_rounds": 60,
+        "timeout_seconds": 3000,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true
+      }
+    },
+    "v3_cloud_realmlp_raw_aux_e60": {
+      "result_sha256": "284592ec247a22c7e29074bc75e0bcfb08562a904a10c50d774ce247164e48e0",
+      "run": {
+        "id": "v3_cloud_realmlp_raw_aux_e60",
+        "family": "realmlp_cat",
+        "teacher": false,
+        "seed": 20261005,
+        "max_rounds": 60,
+        "timeout_seconds": 4500,
+        "params": {
+          "n_ens": 8,
+          "hidden_sizes": [
+            512,
+            256,
+            128
+          ],
+          "batch_size": 256,
+          "eval_batch_size": 2048,
+          "learning_rate": 0.053,
+          "weight_decay": 0.015,
+          "threads": 4,
+          "ls_eps": 0.0
+        },
+        "categorical_twins": true,
+        "original_aux": true,
+        "execution_backend": "kaggle"
+      }
+    }
+  },
+  "pools": {
+    "short_local_cloud": {
+      "v2_realmlp_cat_raw_aux": 0.5,
+      "v3_cloud_realmlp_raw_aux_e4": 0.5
+    },
+    "long_local_cloud": {
+      "v3_realmlp_cat_raw_aux_e60": 0.5,
+      "v3_cloud_realmlp_raw_aux_e60": 0.5
+    },
+    "all_durations_equal": {
+      "v2_realmlp_cat_raw_aux": 0.25,
+      "v3_cloud_realmlp_raw_aux_e4": 0.25,
+      "v3_realmlp_cat_raw_aux_e60": 0.25,
+      "v3_cloud_realmlp_raw_aux_e60": 0.25
+    }
+  },
+  "pool_controls": {
+    "short_local_cloud": "v2_realmlp_cat_raw_aux",
+    "long_local_cloud": "short_local_cloud",
+    "all_durations_equal": "short_local_cloud"
+  },
+  "pool_gate": {
+    "minimum_pooled_gain": 0,
+    "minimum_mean_fold_gain": 0,
+    "maximum_fold_regression": 2e-05
+  },
+  "blend_gate": {
+    "minimum_pooled_gain": 1e-05,
+    "minimum_mean_fold_gain": 1e-05,
+    "maximum_fold_regression": 2e-05
+  },
+  "alpha_grid": [
+    0.05,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "number_of_blend_tests": 12,
+  "number_of_pool_comparisons": 3,
+  "max_additions": 1,
+  "tie_break": [
+    "pooled_auc_desc",
+    "mean_fold_auc_desc",
+    "alpha_asc",
+    "pool_id_asc"
+  ],
+  "excluded_incomplete_id": "v3_realmlp_cat_raw_aux_e500",
+  "checkpoint_role": "Saved outer model selected via inner stopping; exactly metadata.graph_file, not all .pt files or unsaved epochs",
+  "audit_evaluation": false,
+  "evaluation_note": "Adaptively reused development OOF, exploratory ensemble comparison; does not reverse prior standalone failures",
+  "release_contract_if_positive": "New isolated saved-CV-model release; preserve verified full-data anchor; route dev to heldout fold only and equally average3savedfold test models; all-row native/raw verification, source hashes and independent blend arithmetic mandatory; no new cloud or fitting",
+  "compute": "CPU saved predictions only,2threads; do not interfere with existing GPU training"
+}

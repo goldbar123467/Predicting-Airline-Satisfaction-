@@ -1,0 +1,139 @@
+{
+  "campaign": "third_pass_cloud",
+  "version": 1,
+  "runs": [
+    {
+      "id": "v3_cloud_realmlp_raw_aux_e4",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 3600,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true,
+      "execution_backend": "kaggle"
+    },
+    {
+      "id": "v3_cloud_realmlp_raw_aux_e12",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 12,
+      "timeout_seconds": 3600,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true,
+      "execution_backend": "kaggle"
+    }
+  ],
+  "execution_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "control_id": "v3_cloud_realmlp_raw_aux_e4",
+  "candidate_id": "v3_cloud_realmlp_raw_aux_e12",
+  "hard_timeout_seconds": 3600,
+  "selection_exclusions": [
+    "v3_cloud_realmlp_raw_aux_e4"
+  ],
+  "comparison_controls": {
+    "v3_cloud_realmlp_raw_aux_e12": "v3_cloud_realmlp_raw_aux_e4"
+  },
+  "per_run_timeout_seconds": {
+    "v3_cloud_realmlp_raw_aux_e4": 1800,
+    "v3_cloud_realmlp_raw_aux_e12": 3000
+  },
+  "development_rows": 629671,
+  "test_rows": 299844,
+  "raw_features": [
+    "Age",
+    "Flight Distance",
+    "Inflight wifi service",
+    "Departure/Arrival time convenient",
+    "Ease of Online booking",
+    "Gate location",
+    "Food and drink",
+    "Online boarding",
+    "Seat comfort",
+    "Inflight entertainment",
+    "On-board service",
+    "Leg room service",
+    "Baggage handling",
+    "Checkin service",
+    "Cleanliness",
+    "Departure Delay in Minutes",
+    "Arrival Delay in Minutes",
+    "Gender",
+    "Customer Type",
+    "Type of Travel",
+    "Class"
+  ],
+  "aux_columns": [
+    "orig_aux_00",
+    "orig_aux_01",
+    "orig_aux_02",
+    "orig_aux_03",
+    "orig_aux_04",
+    "orig_aux_05",
+    "orig_aux_06",
+    "orig_aux_07",
+    "orig_aux_08",
+    "orig_aux_09",
+    "orig_aux_10",
+    "orig_aux_11",
+    "orig_aux_12"
+  ],
+  "source_split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "official_train_csv_sha256": "2313b65c74e6994f01c2628aae82d2f97aa6f74a81950172ff83864837c98b36",
+  "full_aux_cache_sha256": "0d3c98df25579e0ceb17cbc65ab43d20a1d0a4ab00a479f09019d76732df9c03",
+  "source_bank_manifest_sha256": "4c0adfc0b94c5811d801cf058459159db3835d6bb8a0aa3a2029facc9c4d971c",
+  "seed": 20261005,
+  "inner_stop_fraction": 0.1,
+  "inner_seed_rule": "seed+outer_fold",
+  "inference_device": "cpu",
+  "training_device": "cuda:0",
+  "audit_labels_exported": 0,
+  "matched_gate": {
+    "pooled_gain_min": 0,
+    "mean_fold_gain_min": 0,
+    "worst_fold_gain_min": -2e-05
+  },
+  "blend_gate": {
+    "alphas": [
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "pooled_gain_min": 1e-05,
+    "mean_fold_gain_min": 1e-05,
+    "worst_fold_gain_min": -2e-05
+  },
+  "control_blend_eligible": false,
+  "all_heldout_native_replay_required": true,
+  "refit": "Explicit phase only after global freeze; fixed median rounds, same cloud image and full official labels then"
+}

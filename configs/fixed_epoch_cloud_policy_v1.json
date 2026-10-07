@@ -1,0 +1,34 @@
+{
+  "id": "fixed_epoch_cloud_v1",
+  "created_utc": "2026-10-03T01:58:58.914333+00:00",
+  "user_authorization": "Use the Kaggle cloud allowance while local PC is used for Fortnite; keep current blend and fixed A/B/C experiment.",
+  "parent_registry_path": "artifacts/fixed_epoch_v1/registry.json",
+  "parent_registry_sha256": "3118735d18dc0bd77145bfcefd42344c3fcc896e8007e38026807cfd60c2fef0",
+  "hard_timeout_seconds": 7200,
+  "fit_budget_seconds": 6300,
+  "remote_smoke_timeout_seconds": 330,
+  "maximum_gpu_jobs": 1,
+  "paid_compute": false,
+  "private_required": true,
+  "training_location": "Kaggle only",
+  "cloud_namespace": "cloud/fixed_epoch_v1",
+  "dataset_id": "clarkkitchen/s6e10-fixed-epoch-bundle-20261003",
+  "kernel_id": "clarkkitchen/s6e10-fixed-epoch-20261003",
+  "local_failed_attempt": {
+    "completed_epochs": 0,
+    "completed_fits": 0,
+    "outer_scores_computed": false,
+    "reason": "available host RAM below512MiBguard"
+  },
+  "unchanged": [
+    "A:H4/E4",
+    "B:CprefixH16/E4",
+    "C:H16/E16",
+    "12inner/outerfits",
+    "seed20261005",
+    "8members512/256/128",
+    "fixed10percentmixtures",
+    "noautomaticpromotionorsubmission"
+  ],
+  "new_environment_limit": "AllA/Cfitssamecloudimage; platformandmissingcategorytokenpolicycanmakecloudAdifferfromhistoriclocalreference. No cross-platform determinism claimed."
+}

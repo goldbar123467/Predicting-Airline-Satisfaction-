@@ -1,0 +1,164 @@
+{
+  "campaign": "third_pass_lgb_shrinkage",
+  "protocol_id": "lgb_shrinkage_v1",
+  "version": 1,
+  "registered_utc": "2026-10-02T15:39:00Z",
+  "runs": [
+    {
+      "id": "v3_cloud_lgb_route_teacher_aux_probability_lr01",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 8000,
+      "patience": 300,
+      "timeout_seconds": 1800,
+      "params": {
+        "learning_rate": 0.01,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      },
+      "original_aux": true,
+      "execution_backend": "kaggle",
+      "original_aux_probability": true
+    }
+  ],
+  "execution_image": "gcr.io/kaggle-images/python@sha256:dafd4ce5668bbf1ad422e4c109e0f18c9623c3a7c7f48b0235f13142755c40b9",
+  "lightgbm_version": "4.7.0",
+  "execution_threads": 4,
+  "training_device": "cpu",
+  "inference_device": "cpu",
+  "control_id": "v3_cloud_lgb_route_teacher_aux_probability",
+  "candidate_id": "v3_cloud_lgb_route_teacher_aux_probability_lr01",
+  "hard_timeout_seconds": 1800,
+  "per_run_timeout_seconds": {
+    "v3_cloud_lgb_route_teacher_aux_probability_lr01": 1800
+  },
+  "production_timeout_seconds": 900,
+  "selection_exclusions": [
+    "v3_cloud_lgb_route_teacher_aux_probability"
+  ],
+  "comparison_controls": {
+    "v3_cloud_lgb_route_teacher_aux_probability_lr01": "v3_cloud_lgb_route_teacher_aux_probability"
+  },
+  "development_rows": 629671,
+  "test_rows": 299844,
+  "training_rows_after_freeze": 699635,
+  "raw_features": [
+    "Age",
+    "Flight Distance",
+    "Inflight wifi service",
+    "Departure/Arrival time convenient",
+    "Ease of Online booking",
+    "Gate location",
+    "Food and drink",
+    "Online boarding",
+    "Seat comfort",
+    "Inflight entertainment",
+    "On-board service",
+    "Leg room service",
+    "Baggage handling",
+    "Checkin service",
+    "Cleanliness",
+    "Departure Delay in Minutes",
+    "Arrival Delay in Minutes",
+    "Gender",
+    "Customer Type",
+    "Type of Travel",
+    "Class"
+  ],
+  "source_split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "official_train_csv_sha256": "2313b65c74e6994f01c2628aae82d2f97aa6f74a81950172ff83864837c98b36",
+  "seed": 20261003,
+  "inner_stop_fraction": 0.1,
+  "inner_seed_rule": "seed+outer_fold",
+  "audit_labels_exported": 0,
+  "matched_gate": {
+    "pooled_gain_min": 0,
+    "mean_fold_gain_min": 0,
+    "worst_fold_gain_min": -2e-05
+  },
+  "blend_gate": {
+    "alphas": [
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "pooled_gain_min": 1e-05,
+    "mean_fold_gain_min": 1e-05,
+    "worst_fold_gain_min": -2e-05
+  },
+  "control_blend_eligible": false,
+  "all_heldout_native_replay_required": true,
+  "native_tolerance": {
+    "rtol": 1e-10,
+    "atol": 1e-12
+  },
+  "deadlines": {
+    "package_ready_utc": "2026-10-02T15:50:00Z",
+    "cv_complete_utc": "2026-10-02T16:20:00Z",
+    "proof_and_freeze_utc": "2026-10-02T16:25:00Z",
+    "production_latest_start_utc": "2026-10-02T16:25:00Z",
+    "production_complete_utc": "2026-10-02T16:40:00Z",
+    "raw_verification_complete_utc": "2026-10-02T16:55:00Z",
+    "delivery_utc": "2026-10-02T17:00:00Z"
+  },
+  "source_hashes": {
+    "artifacts/runs/v2_lgb_route_teacher_aux_127/result.json": "83e1d17fbe182200a7433f28682c27ba811f403f9e3a2373913846a2c7f04518",
+    "data/teacher_predictions.parquet": "8dd064e96f500e900e4fef3a4bed41b1342d93ee7802646e320d42b1bf4dfbfb",
+    "data/original_aux_predictions.parquet": "0d3c98df25579e0ceb17cbc65ab43d20a1d0a4ab00a479f09019d76732df9c03",
+    "data/original_aux_probability_predictions.parquet": "58dc28c960e7bb2bf158653722e798848262a6f18da8881f9d7a583ac8255863",
+    "artifacts/teacher/model.ubj": "3f20a9b549d333c68a9eb0f9071842b8c8de245744c5b808d9e1eb2e083d696f",
+    "artifacts/original_aux/manifest.json": "4c0adfc0b94c5811d801cf058459159db3835d6bb8a0aa3a2029facc9c4d971c",
+    "artifacts/original_aux_probability/manifest.json": "b62327af2c4261c06319e1991a752d4b9cbc9d8963c95934e69371833afdaf03",
+    "data/splits.parquet": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c"
+  },
+  "refit": "Fresh same-image CPU full-data fit only after positive freeze, fixed median selected rounds; never Booster.refit leaf updating",
+  "selection_note": "One combined shrinkage/stopping recipe. Reused development only, no audit/public selection. Immutable verified q control. Preserve existing gates and max2newunits.",
+  "reused_control": {
+    "run": {
+      "id": "v3_cloud_lgb_route_teacher_aux_probability",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 600,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      },
+      "original_aux": true,
+      "execution_backend": "kaggle",
+      "original_aux_probability": true
+    },
+    "files": {
+      "artifacts/runs/v3_cloud_lgb_route_teacher_aux_probability/result.json": "03786f9699e97c97f3ad5d13b94e4e964133141036eb75aabea1e22524726f31",
+      "artifacts/runs/v3_cloud_lgb_route_teacher_aux_probability/cloud_import_verification.json": "722ede7c82e787897f8418f3c273f4ede581b8c04eb3322eac7d3111bd37d83e",
+      "artifacts/runs/v3_cloud_lgb_route_teacher_aux_probability/oof.parquet": "a12070790cad20b1f434cee941a1d2810aa1afa68c0b7780437d02f9dc699a3b",
+      "artifacts/runs/v3_cloud_lgb_route_teacher_aux_probability/test.parquet": "75ed98626be98d7001ac44f3b8fdb42c2b377207cd26da3a99d2057585e79668"
+    },
+    "execution_image": "gcr.io/kaggle-images/python@sha256:dafd4ce5668bbf1ad422e4c109e0f18c9623c3a7c7f48b0235f13142755c40b9"
+  },
+  "production_forecast": {
+    "fixed_overhead_seconds": 90,
+    "seconds_per_round": 0.75,
+    "timeout_seconds": 900,
+    "never_truncate_rounds": true
+  }
+}

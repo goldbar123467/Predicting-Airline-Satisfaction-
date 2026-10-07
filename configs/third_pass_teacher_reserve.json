@@ -1,0 +1,176 @@
+{
+  "format": "third_pass_original_realmlp_teacher_reserve",
+  "registered_utc": "2026-10-02T14:15:15.846461+00:00",
+  "status": "registered_before_production_fit",
+  "activation": {
+    "authorized_by": "Root explicit reserve activation after completed CatBoost pair; dated reserve in research/third_pass_validation.md",
+    "control_id": "v3_cat_route_te_teacher_aux_control",
+    "candidate_id": "v3_cat_route_te_teacher_aux_probability",
+    "candidate_oof_auc": 0.9606584067407737,
+    "control_oof_auc": 0.9607565848377561,
+    "fold_deltas": [
+      -1.7229192727508114e-05,
+      -0.00016238857328065848,
+      -0.00012887856997556568
+    ],
+    "frozen_batch02_oof_auc": 0.9614075009196988,
+    "qualified_incremental_release": false,
+    "remaining_exploration_minutes_at_registration": 89.73589231666666
+  },
+  "bank": {
+    "run": {
+      "id": "original_only_fixed_realmlp_teacher",
+      "family": "realmlp_cat",
+      "seed": 0,
+      "max_rounds": 8,
+      "categorical_twins": true,
+      "params": {
+        "device": "cuda",
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0,
+        "lr_sched": "flat_anneal"
+      }
+    },
+    "source": "data/original.parquet",
+    "source_rows": 129859,
+    "input_scope": "21 original-only raw predictors and original-only satisfaction; no synthetic satisfaction read; unchanged prior anti-overlap audit",
+    "validation": null,
+    "early_stopping": false,
+    "timeout_seconds": 600,
+    "native_directory": "artifacts/original_realmlp_teacher",
+    "cache": "data/original_realmlp_teacher_predictions.parquet",
+    "feature": "original_realmlp_teacher_logit",
+    "probability_clip": [
+      1e-06,
+      0.999999
+    ],
+    "logit_calculation_dtype": "float64",
+    "cache_dtype": "float32",
+    "cache_and_raw_inference_device": "cpu"
+  },
+  "student_control_id": "v2_realmlp_cat_raw_aux",
+  "student_control_run": {
+    "id": "v2_realmlp_cat_raw_aux",
+    "family": "realmlp_cat",
+    "teacher": false,
+    "seed": 20261005,
+    "max_rounds": 4,
+    "timeout_seconds": 1200,
+    "params": {
+      "n_ens": 8,
+      "hidden_sizes": [
+        512,
+        256,
+        128
+      ],
+      "batch_size": 256,
+      "eval_batch_size": 2048,
+      "learning_rate": 0.053,
+      "weight_decay": 0.015,
+      "threads": 4,
+      "ls_eps": 0.0
+    },
+    "categorical_twins": true,
+    "original_aux": true
+  },
+  "student_run": {
+    "id": "v3_realmlp_cat_raw_aux_original_nn_teacher",
+    "family": "realmlp_cat",
+    "teacher": false,
+    "seed": 20261005,
+    "max_rounds": 4,
+    "timeout_seconds": 1200,
+    "params": {
+      "n_ens": 8,
+      "hidden_sizes": [
+        512,
+        256,
+        128
+      ],
+      "batch_size": 256,
+      "eval_batch_size": 2048,
+      "learning_rate": 0.053,
+      "weight_decay": 0.015,
+      "threads": 4,
+      "ls_eps": 0.0
+    },
+    "categorical_twins": true,
+    "original_aux": true,
+    "original_realmlp_teacher": true
+  },
+  "student_timeout_seconds": 1200,
+  "scope": {
+    "source_teacher_fits": 1,
+    "student_recipes": 1,
+    "additional_seeds": 0,
+    "synthetic_audit_access": false,
+    "public_score_selection": false
+  },
+  "acceptance": {
+    "metric": "ROC AUC",
+    "selection": "original fixed3fold nested development OOF; adaptively reused evidence",
+    "anchor_sha256": "d75c7eba29f8ed9cb3e9713e4f43b102a5d48dacdcfbba616f9c331a28bb0dc1",
+    "alpha_grid": [
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "minimum_pooled_gain": 1e-05,
+    "minimum_mean_fold_gain": 1e-05,
+    "maximum_fold_regression": 2e-05,
+    "max_new_candidate_units": 2,
+    "incremental_submission_gate": "same pooled/macro/fold thresholds against best previously submitted development blend",
+    "global_confirmation_not_renewed": true
+  },
+  "deadlines": {
+    "stop_new_runs_utc": "2026-10-02T15:45:00+00:00",
+    "exploration_end_utc": "2026-10-02T16:00:00+00:00",
+    "delivery_utc": "2026-10-02T17:00:00+00:00"
+  },
+  "source_hashes": {
+    "scripts/original_realmlp_teacher.py": "77f9a25517caff3be256ec3270d273534c0452151f213ef3d0c89af588630cd9",
+    "scripts/test_original_realmlp_teacher.py": "e508fc2be605abee7ae5de642e4ea03410b7ca4cb8080140242b151138adb949",
+    "scripts/common.py": "c017529e25e55992bee9760b4ca07981c6ed0aeb46713cf1808d06395dbe9a17",
+    "scripts/teacher.py": "293b12583322fdc18ce4bafb02f68ddce4feca16a4df5b098de71c316223e3cc",
+    "scripts/realmlp.py": "8da0d62f1555c91ffe91befe7855f553f58fe6781db0e7249a7e7041130e03d8",
+    "scripts/realmlp_categorical.py": "70c8b78f77c8f53df7f94e7fc4c92d3e47592973dd942fae20ed3beb2bbe4184",
+    "scripts/categorical_transform.py": "dc6e354e22f86eca08315ded64938c9fc234d3bf005149925feb3aac6fdbc2b2",
+    "scripts/prepare_original.py": "c18566d4af47743820c1461cd95e9f72f29eb255245f9dd5becc6537d5bf64c8",
+    "requirements.lock.txt": "2f2b8b07b8ed1d4a444c97097032dc64c41b3c10a0f8812e3d92058b6e926f20",
+    "research/third_pass_validation.md": "934a8577f0f936da9468770ddbb725d74d8c72c3809c71ff2f8bef014059ee3d",
+    "research/original_audit.json": "70f2acde54b7fce311a76d44f151a37ba9e6f1b67c5ddba03ace593790b73d9c",
+    "data/original.parquet": "633165a332541e41c7de41cfe2395128eb2e52bc39eb78a79c979b4d2de475b6",
+    "data/train.csv": "2313b65c74e6994f01c2628aae82d2f97aa6f74a81950172ff83864837c98b36",
+    "data/test.csv": "ff7932747f27c5274de904194ac38b4d088ea4f9bb005ae74f0d619fb893a9b6",
+    "data/splits.parquet": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+    "artifacts/second_pass/blend/frozen.json": "d75c7eba29f8ed9cb3e9713e4f43b102a5d48dacdcfbba616f9c331a28bb0dc1",
+    "artifacts/third_pass_batch02/blend/frozen.json": "0da22fdb92cc30b81dbc5ab70e4cfca36c35ccea062c1fa6eff58bc470492766"
+  },
+  "synthetic_verification": {
+    "command": ".venv/Scripts/python.exe scripts/test_original_realmlp_teacher.py -v",
+    "tests_passed": 5,
+    "seconds": 26.739,
+    "training_device": "cpu",
+    "synthetic_original_rows": 160,
+    "synthetic_epochs": 1,
+    "synthetic_n_ens": 2,
+    "synthetic_hidden_sizes": [
+      16,
+      8
+    ],
+    "production_fit_started": false
+  },
+  "attribution": "Independent fixed single-seed adaptation of original-only RealMLP teacher concept inspected in goodpjw2008 Part5; existing PyTabKit implementation; no notebook code copied",
+  "limitations": "Source shift and near-duplicate ancestry remain; no claimed student gain before evaluation. GPU training is not guaranteed bitwise reproducible."
+}

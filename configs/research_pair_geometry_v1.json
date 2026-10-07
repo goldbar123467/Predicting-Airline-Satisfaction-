@@ -1,0 +1,14 @@
+{
+  "id": "research_pair_geometry_v1",
+  "reason": "Explain how correlated accepted models repair and break ranking pairs, and why a tiny net AUC gain does not identify precise blend weights.",
+  "scope": "Fixed accepted-model score comparisons only; no selection, new weight search, audit data, model fitting or release action.",
+  "base_protocol": "configs/research_pass_v1.json",
+  "comparisons": [
+    {"reference": "incumbent", "comparator": "v2"},
+    {"reference": "incumbent", "comparator": "trees_only"},
+    {"reference": "incumbent", "comparator": "neural_only"},
+    {"reference": "neural_half_trees_half", "comparator": "incumbent"}
+  ],
+  "computation": "Exact strict cross-class rank-discordance counts from all-row Kendall discordance minus within-positive and within-negative discordance. Require tie-free scores and brute-pair synthetic verification. Repaired/broken pair counts follow from discordance and signed AUC win-count difference.",
+  "limit": "Pair counts are explanatory geometry, not independent sample size or confidence evidence. Rows, models, recipes and weights have already been adaptively reused."
+}

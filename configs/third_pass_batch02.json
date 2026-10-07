@@ -1,0 +1,1829 @@
+{
+  "campaign": "third_pass",
+  "campaign_id": "third_pass_batch02",
+  "deadline_utc": "2026-10-02T17:00:00Z",
+  "stop_new_runs_utc": "2026-10-02T15:45:00Z",
+  "finalize_utc": "2026-10-02T16:00:00Z",
+  "wait_for_cutoff": false,
+  "runs": [
+    {
+      "id": "lgb_baseline",
+      "family": "lightgbm",
+      "seed": 20261001,
+      "max_rounds": 2200,
+      "patience": 120,
+      "timeout_seconds": 4800,
+      "params": {
+        "learning_rate": 0.035,
+        "num_leaves": 31,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 5.0
+      }
+    },
+    {
+      "id": "cat_baseline",
+      "family": "catboost",
+      "seed": 20261001,
+      "max_rounds": 2500,
+      "patience": 160,
+      "timeout_seconds": 5400,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.055,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      }
+    },
+    {
+      "id": "xgb_baseline",
+      "family": "xgboost",
+      "seed": 20261001,
+      "max_rounds": 2200,
+      "patience": 120,
+      "timeout_seconds": 4200,
+      "params": {
+        "learning_rate": 0.04,
+        "max_depth": 6,
+        "min_child_weight": 20,
+        "subsample": 0.85,
+        "colsample_bytree": 0.85,
+        "reg_lambda": 10.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "lgb_route",
+      "family": "lightgbm",
+      "route": true,
+      "seed": 20261002,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.035,
+        "num_leaves": 47,
+        "min_child_samples": 100,
+        "colsample_bytree": 0.85,
+        "subsample": 0.85,
+        "subsample_freq": 1,
+        "reg_lambda": 8.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      }
+    },
+    {
+      "id": "cat_route",
+      "family": "catboost",
+      "route": true,
+      "seed": 20261002,
+      "max_rounds": 2600,
+      "patience": 160,
+      "timeout_seconds": 6000,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      }
+    },
+    {
+      "id": "lgb_route_teacher",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 31,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      }
+    },
+    {
+      "id": "cat_route_teacher",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 6000,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      }
+    },
+    {
+      "id": "lgb_route_teacher_63",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 63,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      }
+    },
+    {
+      "id": "xgb_teacher",
+      "family": "xgboost",
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2200,
+      "patience": 140,
+      "timeout_seconds": 4800,
+      "params": {
+        "learning_rate": 0.035,
+        "max_depth": 6,
+        "min_child_weight": 20,
+        "subsample": 0.85,
+        "colsample_bytree": 0.85,
+        "reg_lambda": 10.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "xgb_route_te",
+      "family": "xgboost",
+      "teacher": false,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "lgb_route_teacher_127",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      }
+    },
+    {
+      "id": "xgb_route_te_teacher",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "cat_route_teacher_d8",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 6000,
+      "params": {
+        "depth": 8,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      }
+    },
+    {
+      "id": "xgb_features",
+      "family": "xgboost",
+      "features": true,
+      "seed": 20261002,
+      "max_rounds": 2200,
+      "patience": 130,
+      "timeout_seconds": 4200,
+      "params": {
+        "learning_rate": 0.035,
+        "max_depth": 7,
+        "min_child_weight": 30,
+        "subsample": 0.85,
+        "colsample_bytree": 0.75,
+        "reg_lambda": 12.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "realmlp_teacher",
+      "family": "realmlp",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 5400,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.01
+      }
+    },
+    {
+      "id": "tabm_baseline",
+      "family": "tabm",
+      "seed": 20261001,
+      "max_rounds": 24,
+      "timeout_seconds": 5400,
+      "params": {
+        "k": 16,
+        "d_block": 128,
+        "batch_size": 1024,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003,
+        "patience": 3
+      }
+    },
+    {
+      "id": "tabm_ple_teacher",
+      "family": "tabm",
+      "teacher": true,
+      "features": true,
+      "seed": 20261002,
+      "max_rounds": 24,
+      "timeout_seconds": 7200,
+      "params": {
+        "k": 16,
+        "d_block": 128,
+        "n_blocks": 2,
+        "batch_size": 1024,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003,
+        "patience": 3,
+        "num_embeddings": true,
+        "n_bins": 32,
+        "d_embedding": 16
+      }
+    },
+    {
+      "id": "realmlp_te_teacher",
+      "family": "realmlp",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 5400,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "tabm_cat_teacher",
+      "family": "tabm_cat",
+      "categorical_twins": true,
+      "teacher": true,
+      "seed": 20261006,
+      "max_rounds": 40,
+      "timeout_seconds": 5400,
+      "params": {
+        "k": 16,
+        "d_block": 128,
+        "n_blocks": 2,
+        "batch_size": 512,
+        "eval_batch_size": 512,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003,
+        "patience": 6,
+        "threads": 4
+      }
+    },
+    {
+      "id": "tabm_cat_ple_te_teacher",
+      "family": "tabm_cat",
+      "categorical_twins": true,
+      "teacher": true,
+      "seed": 20261007,
+      "max_rounds": 40,
+      "timeout_seconds": 5400,
+      "params": {
+        "k": 16,
+        "d_block": 128,
+        "n_blocks": 2,
+        "batch_size": 512,
+        "eval_batch_size": 512,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003,
+        "patience": 6,
+        "threads": 4,
+        "num_embeddings": true,
+        "n_bins": 32,
+        "d_embedding": 16
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "realmlp_te_teacher16",
+      "family": "realmlp",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 16,
+      "timeout_seconds": 2400,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "realmlp_cat_te_teacher",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1800,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "cat_twins_teacher",
+      "family": "catboost",
+      "route": false,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 1800,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128,
+        "max_ctr_complexity": 1
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "cat_route_teacher_seed2",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261009,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 6000,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      }
+    },
+    {
+      "id": "cat_route_te_teacher",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 6000,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "xgb_route_te_teacher_d6",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 6,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      }
+    },
+    {
+      "id": "realmlp_cat_te_teacher_seed2",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261011,
+      "max_rounds": 4,
+      "timeout_seconds": 1800,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "tabm_cat_teacher_wd003",
+      "family": "tabm_cat",
+      "categorical_twins": true,
+      "teacher": true,
+      "seed": 20261006,
+      "max_rounds": 40,
+      "timeout_seconds": 5400,
+      "params": {
+        "k": 16,
+        "d_block": 128,
+        "n_blocks": 2,
+        "batch_size": 512,
+        "eval_batch_size": 512,
+        "learning_rate": 0.002,
+        "weight_decay": 0.003,
+        "patience": 6,
+        "threads": 4
+      }
+    },
+    {
+      "id": "xgb_route_te_teacher_profiles",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 5400,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      },
+      "route_profiles": true
+    },
+    {
+      "id": "cat_route_te_teacher_profiles",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "route_profiles": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_teacher_profiles",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1800,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true,
+      "route_profiles": true
+    },
+    {
+      "id": "v2_lgb_route_te_teacher_127",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 300,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "v2_lgb_route_te_teacher_profiles_127",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 360,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "route_profiles": true
+    },
+    {
+      "id": "v2_cat_route_te_teacher_d6",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 6,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "v2_cat_route_te_teacher_l220",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 20.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      }
+    },
+    {
+      "id": "v2_xgb_route_te_teacher_profiles_aux",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 600,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      },
+      "route_profiles": true,
+      "original_aux": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_teacher_aux",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true,
+      "original_aux": true
+    },
+    {
+      "id": "v2_realmlp_cat_raw",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "v2_realmlp_cat_raw_aux",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true
+    },
+    {
+      "id": "v2_lgb_route_teacher_aux_127",
+      "family": "lightgbm",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 2600,
+      "patience": 150,
+      "timeout_seconds": 600,
+      "params": {
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_child_samples": 80,
+        "colsample_bytree": 0.85,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "reg_lambda": 6.0,
+        "cat_smooth": 30.0,
+        "cat_l2": 10.0
+      },
+      "original_aux": true
+    },
+    {
+      "id": "v2_cat_route_te_dual_teacher",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "original_lgb_teacher": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_dual_teacher",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true,
+      "original_lgb_teacher": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_teacher_wd030",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 900,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.03,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_teacher_lr0265",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 900,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.0265,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "v2_realmlp_cat_te_teacher_emb10",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 900,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0,
+        "embedding_size": 10
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "categorical_twins": true
+    },
+    {
+      "id": "v2_xgb_route_te_teacher_profiles_te100",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 100,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 300,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      },
+      "route_profiles": true
+    },
+    {
+      "id": "v2_realmlp_cat_profiles_teacher_no_te",
+      "family": "realmlp_cat",
+      "teacher": true,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 900,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "route_profiles": true
+    },
+    {
+      "id": "v2_realmlp_cat_raw_aux_seed20261021",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261021,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true
+    },
+    {
+      "id": "v3_realmlp_cat_raw_aux_probability",
+      "family": "realmlp_cat",
+      "teacher": false,
+      "seed": 20261005,
+      "max_rounds": 4,
+      "timeout_seconds": 1200,
+      "params": {
+        "n_ens": 8,
+        "hidden_sizes": [
+          512,
+          256,
+          128
+        ],
+        "batch_size": 256,
+        "eval_batch_size": 2048,
+        "learning_rate": 0.053,
+        "weight_decay": 0.015,
+        "threads": 4,
+        "ls_eps": 0.0
+      },
+      "categorical_twins": true,
+      "original_aux": true,
+      "original_aux_probability": true
+    },
+    {
+      "id": "v3_xgb_route_te_teacher_profiles_aux_probability",
+      "family": "xgboost",
+      "teacher": true,
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "seed": 20261004,
+      "max_rounds": 5000,
+      "patience": 220,
+      "timeout_seconds": 600,
+      "params": {
+        "learning_rate": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "reg_lambda": 1.0,
+        "max_bin": 256
+      },
+      "route_profiles": true,
+      "original_aux": true,
+      "original_aux_probability": true
+    },
+    {
+      "id": "v3_cat_route_te_teacher_aux_control",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "original_aux": true
+    },
+    {
+      "id": "v3_cat_route_te_teacher_aux_probability",
+      "family": "catboost",
+      "route": true,
+      "teacher": true,
+      "seed": 20261003,
+      "max_rounds": 3000,
+      "patience": 160,
+      "timeout_seconds": 600,
+      "params": {
+        "depth": 7,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5.0,
+        "border_count": 128
+      },
+      "encoding": {
+        "keys": [
+          "Flight Distance",
+          "Age",
+          [
+            "Flight Distance",
+            "Age"
+          ],
+          [
+            "Flight Distance",
+            "Class"
+          ],
+          [
+            "Flight Distance",
+            "Type of Travel"
+          ],
+          [
+            "Age",
+            "Class",
+            "Type of Travel",
+            "Customer Type"
+          ]
+        ],
+        "smoothing": 20,
+        "n_splits": 5,
+        "seed": 20261001,
+        "counts": true
+      },
+      "original_aux": true,
+      "original_aux_probability": true
+    }
+  ],
+  "blend_groups": {},
+  "baseline_selection": "artifacts/second_pass/blend/frozen.json",
+  "selection_policy": {
+    "minimum_pooled_gain": 1e-05,
+    "minimum_mean_fold_gain": 1e-05,
+    "maximum_fold_regression": 2e-05,
+    "alpha_grid": [
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "max_additions": 2,
+    "new_candidate_prefix": "v3_"
+  },
+  "comparison_controls": {
+    "v3_realmlp_cat_raw_aux_probability": "v2_realmlp_cat_raw_aux",
+    "v3_xgb_route_te_teacher_profiles_aux_probability": "v2_xgb_route_te_teacher_profiles_aux",
+    "v3_cat_route_te_teacher_aux_control": "cat_route_te_teacher",
+    "v3_cat_route_te_teacher_aux_probability": "v3_cat_route_te_teacher_aux_control"
+  },
+  "registration_note": "Preregistered CatBoost transfer pair enabled by XGB q block pooled/mean gains >=1e-5 with2positivefolds. EV-only control is excluded from selection. Both clone exact cat_route_te_teacher model hyperparameters and seed;600second wall cap.",
+  "cloud_candidates": [],
+  "selection_exclusions": [
+    "v3_cat_route_te_teacher_aux_control"
+  ],
+  "registered_utc": "2026-10-02T13:39:54.667413+00:00"
+}

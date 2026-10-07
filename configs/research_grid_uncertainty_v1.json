@@ -1,0 +1,17 @@
+{
+  "id": "research_grid_uncertainty_v1",
+  "scope": "Conditional simultaneous uncertainty over exactly the already registered 49-point block grid; no new weights, candidates, model fits, audit data or release selection.",
+  "motivation": "Do not use the incumbent-v2 standard error for a different small reweighting contrast. Estimate each contrast's paired uncertainty and their joint dependence.",
+  "base_protocol": "configs/research_pass_v1.json",
+  "existing_grid_result": "artifacts/research_pass_v1/blend/diagnostics.json",
+  "method": "Exact positive/negative AUC placements for the incumbent and each fixed grid score; covariance of paired placement differences. Draw a zero-mean multivariate Gaussian with that estimated covariance. Use the 95th percentile of maximum absolute standardized perturbation for an approximate simultaneous fixed-grid band.",
+  "gaussian_draws": 20000,
+  "seed": 20261003,
+  "extra_outputs": [
+    "Contrast-specific standard errors and conditional pointwise intervals for every existing grid point",
+    "Simultaneous fixed-grid interval endpoints and their critical value",
+    "Which existing grid point maximizes observed AUC plus each Gaussian perturbation, labeled perturbation selection frequency rather than probability of being the true optimum"
+  ],
+  "prohibited_claims": "This cannot account for historical model/anchor/recipe selection, training variance, cross-fold training dependence or distribution shift. It is not an independent generalization estimate, Bayesian posterior, exact finite-sample confidence band, new release gate or license to select another submission.",
+  "resource_limit": "CPU only, at most two numerical threads and 2 GiB planned extra arrays. No precision refinement or additional weight grid."
+}

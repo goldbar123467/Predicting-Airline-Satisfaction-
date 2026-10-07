@@ -1,0 +1,12 @@
+{
+  "id": "fixed_epoch_continuation_03",
+  "registry_path": "registry.json",
+  "registry_sha256": "cbfa5420292ec4857f7217eb2d57dca3c12279e7152dc6b8e9b32e3c9e2ea069",
+  "output_dir": "artifacts/fixed_epoch_continuation_03",
+  "split_path": "data/splits.parquet",
+  "split_sha256": "08b46eba99a055032840a0c23392fa71aa88077b727d4e3c172dcba9dce3b9d6",
+  "source_split_sha256": "4e262277b0a1494cd5d26ff45a30c827480ef334974f1331d730df0a7c80075c",
+  "incumbent_selection_sha256": "bc773bb7a65a3357ac82f1553ebd852e0fc2773cf6683650dce5fcf5166b3311",
+  "completed_manifest_path": "artifacts/fixed_epoch_continuation_03/completed_manifest.json",
+  "completion_receipt_path": "artifacts/fixed_epoch_continuation_03/completion_receipt.json"
+}
